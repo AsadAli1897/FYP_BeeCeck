@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fyp_bees/login.dart';
 
-
 class SignUP extends StatefulWidget {
   const SignUP({
     super.key,
@@ -11,6 +10,7 @@ class SignUP extends StatefulWidget {
   State<SignUP> createState() => _SignUpState();
 }
 
+//just commit
 class _SignUpState extends State<SignUP> {
   @override
   Widget build(BuildContext context) {
