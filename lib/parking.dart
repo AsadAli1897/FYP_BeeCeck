@@ -17,10 +17,8 @@ class park extends StatefulWidget {
 class _parkState extends State<park> {
   Position? _currentPosition;
   String _currentAddress = '';
-  TextEditingController _addressController = TextEditingController();
+  TextEditingController textEditingController = TextEditingController();
   int hives = 0; //number of hives
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -28,109 +26,138 @@ class _parkState extends State<park> {
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 250, 173, 58),
         centerTitle: true, // set this property to center the text
-        title: Text('Register Colony'),
+        title: Text('New Location'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 150, // set the desired width
-              height: 150, // set the desired height
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 253, 202, 106),
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: AssetImage('colony.png'),
+      body: Column(
+        //mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 30,
+          ),
+          Container(
+            height: 200, // Replace with your desired height
+            width: MediaQuery.of(context).size.width,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(
+                  10), // Replace with your desired border radius
+              child: Image.asset(
+                  "assets/location.jpeg", // Replace with the path to your asset image
+                  fit: BoxFit.cover), // set the desired height
+            ),
+          ),
+          Container(
+              margin: EdgeInsets.only(top: 30.0, left: 20.0, right: 20.0),
+              child: Column(children: [
+                TextFormField(
+                    decoration: InputDecoration(
+                        contentPadding: EdgeInsets.all(10),
+                        hintText: "Previous location",
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Color.fromARGB(255, 211, 211, 211),
+                              width: 1.0,
+                            )),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Color.fromARGB(255, 211, 211, 211),
+                              width: 1.0,
+                            )),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10))),
+                    controller: textEditingController,
+                    onChanged: (value) {}),
+                SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                    decoration: InputDecoration(
+                        contentPadding: EdgeInsets.all(10),
+                        hintText: "New location",
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Color.fromARGB(255, 211, 211, 211),
+                              width: 1.0,
+                            )),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Color.fromARGB(255, 211, 211, 211),
+                              width: 1.0,
+                            )),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10))),
+                    controller: textEditingController,
+                    onChanged: (value) {}),
+                // Row(children: [
+                //   SizedBox(width: 20),
+                //   if (_currentPosition != null)
+                //     Text(
+                //       "Latitude: ${_currentPosition!.latitude}",
+                //       style: TextStyle(fontSize: 14),
+                //     ),
+                //   SizedBox(width: 40),
+                //   if (_currentPosition != null)
+                //     Text(
+                //       "Longitude: ${_currentPosition!.longitude}",
+                //       style: TextStyle(fontSize: 14),
+                //     ),
+                //   SizedBox(height: 15),
+                // ])
+              ])),
+          // SizedBox(height: 50),
+          // ElevatedButton(
+          //   child: Text(
+          //     "Get Location",
+          //     style: TextStyle(fontSize: 20, color: Colors.white),
+          //   ),
+          //   onPressed: () {
+          //     _getCurrentLocation();
+          //   },
+          //   style: ButtonStyle(
+          //     backgroundColor:
+          //         MaterialStateProperty.all(Color.fromARGB(255, 250, 173, 58)),
+          //     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          //       RoundedRectangleBorder(
+          //         borderRadius: BorderRadius.circular(10),
+          //       ),
+          //     ),
+          //   ),
+          // ),
+          SizedBox(height: 30),
+          ElevatedButton(
+            child: Text(
+              "Update Location",
+              style: TextStyle(fontSize: 18, color: Colors.white,fontFamily: 'Roboto',fontWeight: FontWeight.bold,),
+            ),
+            onPressed: () {
+              _getCurrentLocation();
+            },
+            style: ButtonStyle(
+              backgroundColor:
+                  MaterialStateProperty.all(Color.fromARGB(255, 250, 173, 58)),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
             ),
-            Container(
-                margin: EdgeInsets.only(top: 30.0, left: 30.0, right: 30.0),
-                child: Column(children: [
-                  TextFormField(
 
-                      decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(20),
-                          hintText: "Address",
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide(
-                                color: Color.fromARGB(255, 211, 211, 211),
-                                width: 1.0,
-                              )),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide(
-                                color: Color.fromARGB(255, 211, 211, 211),
-                                width: 1.0,
-                              )),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30))),
-                      controller: _addressController,
-                      onChanged: (value) {}),
-                  SizedBox(
-                    height: 15,
-                  ),
-
-                  Row(children: [
-                    SizedBox(width: 20),
-                    if (_currentPosition != null)
-                      Text(
-                        "Latitude: ${_currentPosition!.latitude}",
-                        style: TextStyle(fontSize: 14),
-                      ),
-                    SizedBox(width: 40),
-                    if (_currentPosition != null)
-                      Text(
-                        "Longitude: ${_currentPosition!.longitude}",
-                        style: TextStyle(fontSize: 14),
-                      ),
-                    SizedBox(height: 15),
-                  ])
-                ])),
-            SizedBox(height: 50),
-            ElevatedButton(
-              child: Text(
-                "Get Location",
-                style: TextStyle(fontSize: 18, color: Colors.white),
-              ),
-              onPressed: () {
-                _getCurrentLocation();
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(
-                    Color.fromARGB(255, 250, 173, 58)),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 15),
-            ElevatedButton(
-              child: Text(
-                "Update Parking",
-                style: TextStyle(fontSize: 18, color: Colors.white),
-              ),
-              onPressed: () {
-                makePostRequest();
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(
-                    Color.fromARGB(255, 250, 173, 58)),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
 
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+
+
+        },
+        backgroundColor: Color.fromARGB(255, 250, 173, 58),
+        child: Icon(Icons.check),
+      ),
+      //),
     );
   }
 
@@ -140,32 +167,31 @@ class _parkState extends State<park> {
   //   _getCurrentLocation();
   // }
 
-
   void _getCurrentLocation() async {
     final position = await Geolocator.getCurrentPosition();
     setState(() {
       _currentPosition = position;
+      makePostRequest();
     });
-    _getAddressFromLatLng();
-
+    //_getAddressFromLatLng();
   }
 
-  void _getAddressFromLatLng() async {
-    try {
-      final List<Placemark> placemarks = await placemarkFromCoordinates(
-          _currentPosition!.latitude, _currentPosition!.longitude);
-
-      if (placemarks != null && placemarks.isNotEmpty) {
-        setState(() {
-          _currentAddress =
-          '${placemarks[0].street}, ${placemarks[0].locality}, ${placemarks[0].postalCode}, ${placemarks[0].country}';
-          print(_currentAddress);
-        });
-      }
-    } catch (e) {
-      //print(e);
-    }
-  }
+  // void _getAddressFromLatLng() async {
+  //   try {
+  //     final List<Placemark> placemarks = await placemarkFromCoordinates(
+  //         _currentPosition!.latitude, _currentPosition!.longitude);
+  //
+  //     if (placemarks != null && placemarks.isNotEmpty) {
+  //       setState(() {
+  //         _currentAddress =
+  //             '${placemarks[0].street}, ${placemarks[0].locality}, ${placemarks[0].postalCode}, ${placemarks[0].country}';
+  //         print(_currentAddress);
+  //       });
+  //     }
+  //   } catch (e) {
+  //     //print(e);
+  //   }
+  // }
 
   Future<void> makePostRequest() async {
     double longitude = _currentPosition!.longitude,
@@ -183,9 +209,12 @@ class _parkState extends State<park> {
       // Access the JSON data
       var data = jsonResponse['address'];
       print(data);
+      TextEditingController controller = TextEditingController(text: data);
+      setState(() {
+        textEditingController=controller;
+      });
     } else {
       print('POST request failed with status: ${response.statusCode}.');
     }
   }
-
 }

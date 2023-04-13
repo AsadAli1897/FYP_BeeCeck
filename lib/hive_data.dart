@@ -25,6 +25,8 @@ class _HiveDataState extends State<HiveData> {
     });
   }
 
+  final String _url = 'http://159.203.147.149:8050/';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -224,7 +226,7 @@ class _HiveDataState extends State<HiveData> {
                 child: Text("WebView not supported on the web"),
               )
                   : WebView(
-                initialUrl: 'https://www.google.com/',
+                initialUrl: _url,
                 javascriptMode: JavascriptMode.unrestricted,
               ),
             ),
