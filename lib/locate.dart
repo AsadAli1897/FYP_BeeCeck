@@ -6,7 +6,6 @@ import 'package:geocoding/geocoding.dart';
 import 'package:http/http.dart' as http;
 import 'package:fyp_bees/main_page.dart';
 
-
 class location extends StatefulWidget {
   const location({Key? key}) : super(key: key);
 
@@ -17,10 +16,8 @@ class location extends StatefulWidget {
 class _locationState extends State<location> {
   Position? _currentPosition;
   String _currentAddress = '';
-  TextEditingController _addressController = TextEditingController();
+  TextEditingController textEditingController = TextEditingController();
   int hives = 0; //number of hives
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -30,161 +27,152 @@ class _locationState extends State<location> {
         centerTitle: true, // set this property to center the text
         title: Text('Register Colony'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      body:  Column(
           children: [
+            SizedBox(
+              height: 30,
+            ),
             Container(
-              width: 150, // set the desired width
-              height: 150, // set the desired height
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 253, 202, 106),
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: AssetImage('colony.png'),
-                ),
+              height: 200, // Replace with your desired height
+              width: MediaQuery.of(context).size.width,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(
+                    10), // Replace with your desired border radius
+                child: Image.asset(
+                    "assets/colony2.jpeg", // Replace with the path to your asset image
+                    fit: BoxFit.cover), // set the desired height
               ),
             ),
             Container(
-                margin: EdgeInsets.only(top: 30.0, left: 30.0, right: 30.0),
+                margin: EdgeInsets.only(top: 30.0, left: 20.0, right: 20.0),
                 child: Column(children: [
                   TextFormField(
                       decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(20),
+                          contentPadding: EdgeInsets.all(10),
                           hintText: "contact#",
                           enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide(
                                 color: Color.fromARGB(255, 211, 211, 211),
                                 width: 1.0,
                               )),
                           focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide(
                                 color: Color.fromARGB(255, 211, 211, 211),
                                 width: 1.0,
                               )),
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30))),
+                              borderRadius: BorderRadius.circular(10))),
                       onChanged: (value) {}),
-                  SizedBox(height: 15),
+                  SizedBox(height: 10),
                   TextFormField(
-
                       decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(20),
+                          contentPadding: EdgeInsets.all(10),
                           hintText: "Address",
                           enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide(
                                 color: Color.fromARGB(255, 211, 211, 211),
                                 width: 1.0,
                               )),
                           focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide(
                                 color: Color.fromARGB(255, 211, 211, 211),
                                 width: 1.0,
                               )),
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30))),
-                      controller: _addressController,
+                              borderRadius: BorderRadius.circular(10))),
+                      controller: textEditingController,
                       onChanged: (value) {}),
                   SizedBox(
-                    height: 15,
+                    height: 10,
                   ),
                   TextFormField(
                       decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(20),
+                          contentPadding: EdgeInsets.all(10),
                           hintText: "Total Hives",
                           enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide(
                                 color: Color.fromARGB(255, 211, 211, 211),
                                 width: 1.0,
                               )),
                           focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide(
                                 color: Color.fromARGB(255, 211, 211, 211),
                                 width: 1.0,
                               )),
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30))),
+                              borderRadius: BorderRadius.circular(10))),
                       onChanged: (value) {
                         setState(() {
                           hives = int.parse(value);
                           print("total $hives");
                         });
                       }),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Row(children: [
-                    SizedBox(width: 20),
-                    if (_currentPosition != null)
-                      Text(
-                        "Latitude: ${_currentPosition!.latitude}",
-                        style: TextStyle(fontSize: 14),
-                      ),
-                    SizedBox(width: 40),
-                    if (_currentPosition != null)
-                      Text(
-                        "Longitude: ${_currentPosition!.longitude}",
-                        style: TextStyle(fontSize: 14),
-                      ),
-                    SizedBox(height: 15),
-                  ])
+                  // SizedBox(
+                  //   height: 10,
+                  // ),
+                  // Row(children: [
+                  //   SizedBox(width: 20),
+                  //   if (_currentPosition != null)
+                  //     Text(
+                  //       "Latitude: ${_currentPosition!.latitude}",
+                  //       style: TextStyle(fontSize: 14),
+                  //     ),
+                  //   SizedBox(width: 40),
+                  //   if (_currentPosition != null)
+                  //     Text(
+                  //       "Longitude: ${_currentPosition!.longitude}",
+                  //       style: TextStyle(fontSize: 14),
+                  //     ),
+                  //   SizedBox(height: 15),
+                  // ])
                 ])),
             SizedBox(height: 50),
-            ElevatedButton(
+             ElevatedButton(
               child: Text(
                 "Get Location",
-                style: TextStyle(fontSize: 18, color: Colors.white),
+                style: TextStyle(fontSize: 18, color: Colors.white,fontFamily: 'Roboto',fontWeight: FontWeight.bold,),
               ),
               onPressed: () {
-                _getCurrentLocation();
-                makePostRequest();
+
+
+                //setState(() {
+                  _getCurrentLocation();
+                  //makePostRequest();
+                //});
               },
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(
                     Color.fromARGB(255, 250, 173, 58)),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 15),
-            ElevatedButton(
-              child: Text(
-                "Register...",
-                style: TextStyle(fontSize: 18, color: Colors.white),
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyHomePage(
-                      value: hives,
-                    ),
-                  ),
-                );
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(
-                    Color.fromARGB(255, 250, 173, 58)),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(100),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
             ),
           ],
         ),
-      ),
 
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MyHomePage(
+                value: hives,
+              ),
+            ),
+          );
+        },
+        backgroundColor: Color.fromARGB(255, 250, 173, 58),
+        child: Icon(Icons.check),
+      ),
     );
   }
 
@@ -194,32 +182,33 @@ class _locationState extends State<location> {
   //   _getCurrentLocation();
   // }
 
-
   void _getCurrentLocation() async {
     final position = await Geolocator.getCurrentPosition();
     setState(() {
       _currentPosition = position;
+      makePostRequest();
     });
-    _getAddressFromLatLng();
-
+   // _getAddressFromLatLng();
   }
 
-  void _getAddressFromLatLng() async {
-    try {
-      final List<Placemark> placemarks = await placemarkFromCoordinates(
-          _currentPosition!.latitude, _currentPosition!.longitude);
-
-      if (placemarks != null && placemarks.isNotEmpty) {
-        setState(() {
-          _currentAddress =
-          '${placemarks[0].street}, ${placemarks[0].locality}, ${placemarks[0].postalCode}, ${placemarks[0].country}';
-          print(_currentAddress);
-        });
-      }
-    } catch (e) {
-      //print(e);
-    }
-  }
+  // void _getAddressFromLatLng() async {
+  //   try {
+  //     final List<Placemark> placemarks = await placemarkFromCoordinates(
+  //         _currentPosition!.latitude, _currentPosition!.longitude);
+  //
+  //     if (placemarks != null && placemarks.isNotEmpty) {
+  //       setState(() {
+  //         _currentAddress =
+  //             '${placemarks[0].street}, ${placemarks[0].locality}, ${placemarks[0].postalCode}, ${placemarks[0].country}';
+  //         //print(_currentAddress);
+  //         //_addressController= _currentAddress as TextEditingController;
+  //
+  //       });
+  //     }
+  //   } catch (e) {
+  //     //print(e);
+  //   }
+  // }
 
   Future<void> makePostRequest() async {
     double longitude = _currentPosition!.longitude,
@@ -237,9 +226,13 @@ class _locationState extends State<location> {
       // Access the JSON data
       var data = jsonResponse['address'];
       print(data);
+      TextEditingController controller = TextEditingController(text: data);
+      setState(() {
+        textEditingController=controller;
+      });
+
     } else {
       print('POST request failed with status: ${response.statusCode}.');
     }
   }
-
 }

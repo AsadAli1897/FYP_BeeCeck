@@ -38,7 +38,7 @@ class SignIn extends StatelessWidget {
                 color: Color.fromARGB(255, 253, 202, 106),
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: AssetImage('logo.png'),
+                  image: AssetImage('assets/logo.png'),
                 ),
               ),
             ),

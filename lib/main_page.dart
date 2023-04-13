@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Image.asset(
-              'hive.png',
+              'assets/hive.png',
               //fit: BoxFit.cover,
             ),
             Padding(
@@ -121,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Color.fromARGB(255, 253, 202, 106),
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                    image: AssetImage('logo.png'),
+                    image: AssetImage('assets/logo.png'),
                   ),
                 ),
               ),
