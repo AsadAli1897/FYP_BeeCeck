@@ -61,6 +61,19 @@ class _HiveDataState extends State<HiveData> {
                             child: ElevatedButton(
                               onPressed: () => updateCardText(10, 20, 200),
                               child: Text('Daily'),
+
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Color.fromARGB(255, 173, 98, 71)),
+                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+
+                                  ),
+                                ),
+                                foregroundColor: MaterialStateProperty.all(Colors.white),
+                              ),
+
                             ),
                           ),
                           Padding(
@@ -68,19 +81,43 @@ class _HiveDataState extends State<HiveData> {
                             child: ElevatedButton(
                               onPressed: () => updateCardText(20, 160, 37),
                               child: Text('Weekly'),
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Color.fromARGB(255, 173, 98, 71)),
+                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                                foregroundColor: MaterialStateProperty.all(Colors.white),
+                              ),
                             ),
+
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: ElevatedButton(
                               onPressed: () => updateCardText(30, 132, 98),
                               child: Text('Monthly'),
+
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Color.fromARGB(255, 173, 98, 71)),
+                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                                foregroundColor: MaterialStateProperty.all(Colors.white),
+                              ),
+
                             ),
+
                           ),
                         ],
                       ),
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 250, 173, 58),
+                        color: Color.fromARGB(255, 243, 167, 54),
                         borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(30),
                             topRight: Radius.circular(30)),
@@ -91,123 +128,87 @@ class _HiveDataState extends State<HiveData> {
                       flex: 2,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 250, 173, 58),
+                          color: Color.fromARGB(255, 243, 167, 54),
                           borderRadius: BorderRadius.only(
                               bottomRight: Radius.circular(30),
                               topRight: Radius.circular(30)),
                         ),
                         padding: EdgeInsets.all(8.0),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Expanded(
-                              child: SizedBox(
-                                  height: 80,
-                                  child: Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          10), // set the desired radius
-                                    ),
-                                    child: Stack(
-                                      children: [
-                                        Expanded(
-                                          child: Center(
-                                            child: Text(
-                                              '$cardTempText',
-                                              style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          bottom: 0,
-                                          left: 0,
-                                          right: 0,
-                                          child: Text(
-                                            'Avg. temp(C)',
-                                            style: TextStyle(fontSize: 10),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )),
+                            Container(
+                              height: 60,
+                              width: null,
+                              child: Card(
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text(
+                                        '$cardTempText',
+                                        style: TextStyle(
+                                            fontSize: 15.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(height: 8.0),
+                                      Text(
+                                        'Avg. temp(C)',
+                                        style: TextStyle(fontSize: 8.0),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
-                            SizedBox(width: 8.0),
-                            Expanded(
-                              child: SizedBox(
-                                  height: 80,
-                                  child: Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          10), // set the desired radius
-                                    ),
-                                    child: Stack(
-                                      children: [
-                                        Expanded(
-                                          child: Center(
-                                            child: Text(
-                                              '$cardSoundText',
-                                              style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          bottom: 0,
-                                          left: 0,
-                                          right: 0,
-                                          child: Text(
-                                            'Avg. Sound(C)',
-                                            style: TextStyle(fontSize: 10),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )),
+                            Container(
+                              height: 60,
+                              width: null,
+                              child: Card(
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text(
+                                        '$cardHumiText',
+                                        style: TextStyle(
+                                            fontSize: 15.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(height: 8.0),
+                                      Text(
+                                        'Avg. Humi(C)',
+                                        style: TextStyle(fontSize: 8.0),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
-                            SizedBox(width: 8.0),
-                            Expanded(
-                              child: SizedBox(
-                                  height: 80,
-                                  child: Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          10), // set the desired radius
-                                    ),
-                                    child: Stack(
-                                      children: [
-                                        Expanded(
-                                          child: Center(
-                                            child: Text(
-                                              '$cardHumiText',
-                                              style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          bottom: 0,
-                                          left: 0,
-                                          right: 0,
-                                          child: Text(
-                                            'Avg. Humi(C)',
-                                            style: TextStyle(fontSize: 10),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )),
+                            Container(
+                              height: 60,
+                              width: null,
+                              child: Card(
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text(
+                                        '$cardSoundText',
+                                        style: TextStyle(
+                                            fontSize: 15.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(height: 8.0),
+                                      Text(
+                                        'Avg. Sound(A)',
+                                        style: TextStyle(fontSize: 8.0),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
-                            SizedBox(width: 8.0),
                           ],
                         ),
                       )),
@@ -223,12 +224,12 @@ class _HiveDataState extends State<HiveData> {
               padding: EdgeInsets.only(top: 10),
               child: kIsWeb
                   ? Center(
-                child: Text("WebView not supported on the web"),
-              )
+                      child: Text("WebView not supported on the web"),
+                    )
                   : WebView(
-                initialUrl: _url,
-                javascriptMode: JavascriptMode.unrestricted,
-              ),
+                      initialUrl: _url,
+                      javascriptMode: JavascriptMode.unrestricted,
+                    ),
             ),
           ),
         ],
