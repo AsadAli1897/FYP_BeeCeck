@@ -1,7 +1,47 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-class ProfileScreen extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+//variables..................
+String username = '';
+String Emaill = '';
+String address = '';
+String role = '';
+String cont = '';
+
+class ProfileScreen extends StatefulWidget {
+  final int Uid;
+
+  const ProfileScreen({Key? key, required this.Uid}) : super(key: key);
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   final String imageUrl = 'https://picsum.photos/200';
+
+  int Uid = 0;
+  @override
+  void initState() {
+    super.initState();
+    Uid = widget.Uid;
+  } //
+
+  void updateprofile(String uname, String email, String addr, String rol,
+      {String a = '123456789'}) {
+    print(Uid);
+    setState(() {
+      username = uname;
+      Emaill = email;
+      address = addr;
+      role = rol;
+      cont = a;
+    });
+  }
+
+  TextEditingController textemail = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +71,7 @@ class ProfileScreen extends StatelessWidget {
 
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(10),
-                    hintText: "Role",
+                    hintText: "role",
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide(
@@ -56,7 +96,7 @@ class ProfileScreen extends StatelessWidget {
 
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(10),
-                    hintText: "UserName",
+                    hintText: "username",
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide(
@@ -81,7 +121,33 @@ class ProfileScreen extends StatelessWidget {
 
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(10),
-                    hintText: "Email",
+                    hintText: "Emaill",
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(255, 211, 211, 211),
+                          width: 1.0,
+                        )),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(255, 211, 211, 211),
+                          width: 1.0,
+                        )),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10))),
+                controller: textemail,
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0),
+              child: TextFormField(
+                //controller: firstnameController,
+                //  initialValue: _fName,
+
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.all(10),
+                    hintText: "cont",
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide(
@@ -106,32 +172,7 @@ class ProfileScreen extends StatelessWidget {
 
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(10),
-                    hintText: "contact#",
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(255, 211, 211, 211),
-                          width: 1.0,
-                        )),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(255, 211, 211, 211),
-                          width: 1.0,
-                        )),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10))),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0),
-              child: TextFormField(
-                //controller: firstnameController,
-                //  initialValue: _fName,
-
-                decoration: InputDecoration(
-                    contentPadding: EdgeInsets.all(10),
-                    hintText: "Address",
+                    hintText: "address",
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide(
@@ -153,9 +194,10 @@ class ProfileScreen extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   print('Button pressed');
+                  PickProfile();
                 },
                 child: Text(
-                  'Update',
+                  'Profile',
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
                 style: ButtonStyle(
@@ -173,5 +215,36 @@ class ProfileScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> PickProfile() async {
+    final url = Uri.parse('http://34.125.82.116:8080/user');
+
+    final headers = {'Content-Type': 'application/json'};
+    final body = jsonEncode({'userId': Uid});
+
+    final response = await http.post(url, headers: headers, body: body);
+
+    if (response.statusCode == 200) {
+      print('POST request successful');
+      var jsonResponse = jsonDecode(response.body);
+
+      // Access the JSON data
+
+      var em, uname, rol;
+      em = jsonResponse['email'];
+      uname = jsonResponse['username'];
+      rol = jsonResponse['role'];
+      print(em);
+      print(uname);
+      print(rol);
+
+      TextEditingController controller = TextEditingController(text: em);
+      setState(() {
+        textemail = controller;
+      });
+    } else {
+      print('POST request failed with status: ${response.statusCode}.');
+    }
   }
 }

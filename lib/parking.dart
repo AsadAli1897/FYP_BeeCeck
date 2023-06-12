@@ -6,7 +6,6 @@ import 'package:geocoding/geocoding.dart';
 import 'package:http/http.dart' as http;
 import 'package:fyp_bees/main_page.dart';
 
-
 class park extends StatefulWidget {
   const park({Key? key}) : super(key: key);
 
@@ -130,7 +129,12 @@ class _parkState extends State<park> {
           ElevatedButton(
             child: Text(
               "Update Location",
-              style: TextStyle(fontSize: 18, color: Colors.white,fontFamily: 'Roboto',fontWeight: FontWeight.bold,),
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.white,
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.bold,
+              ),
             ),
             onPressed: () {
               _getCurrentLocation();
@@ -144,16 +148,12 @@ class _parkState extends State<park> {
                 ),
               ),
             ),
-
           ),
         ],
       ),
 
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-
-
-        },
+        onPressed: () {},
         backgroundColor: Color.fromARGB(255, 250, 173, 58),
         child: Icon(Icons.check),
       ),
@@ -196,7 +196,7 @@ class _parkState extends State<park> {
   Future<void> makePostRequest() async {
     double longitude = _currentPosition!.longitude,
         latitude = _currentPosition!.latitude;
-    final url = Uri.parse('http://159.203.147.149:8080/api/location-to-adress');
+    final url = Uri.parse('http://34.125.82.116:8080/api/location-to-adress');
     final headers = {'Content-Type': 'application/json'};
     final body = jsonEncode({'longitude': longitude, 'latitude': latitude});
 
@@ -211,7 +211,7 @@ class _parkState extends State<park> {
       print(data);
       TextEditingController controller = TextEditingController(text: data);
       setState(() {
-        textEditingController=controller;
+        textEditingController = controller;
       });
     } else {
       print('POST request failed with status: ${response.statusCode}.');

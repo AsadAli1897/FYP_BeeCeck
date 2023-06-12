@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       //home: HiveData(index: 1),
       //home: location(),
       home: SignUP(),
+      //home:MyHomePage(),
       //home: park(),
       // home: Registration
       //     ? MyHomePage(value: 2)
