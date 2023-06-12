@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:native_notify/native_notify.dart';
 import 'package:fyp_bees/hive_data.dart';
 import 'package:fyp_bees/locate.dart';
 import 'package:fyp_bees/main_page.dart';
@@ -6,7 +7,11 @@ import 'package:fyp_bees/signup.dart';
 
 bool Registration = true;
 
-void main() => runApp(const MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  NativeNotify.initialize(3049, 'Pw2gEsApdYIU2L6RDBa4SX', null, null);
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key});
