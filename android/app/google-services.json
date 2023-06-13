@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "263868483034",
+    "project_id": "pushnotification-a4993",
+    "storage_bucket": "pushnotification-a4993.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:263868483034:android:720e131743a364f50dace3",
+        "android_client_info": {
+          "package_name": "com.example.fyp_bees"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "263868483034-11mvclsst8c0b13i9a79af82dl6oj63c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDowfYnlgby-NorYBWHEv1oEhSADyv7dZg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "263868483034-11mvclsst8c0b13i9a79af82dl6oj63c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

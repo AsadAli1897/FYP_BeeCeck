@@ -88,8 +88,8 @@ class _SignInState extends State<SignIn> {
 
     Future.delayed(Duration(seconds: 2), () {
       setState(() {
-        _isLoading = false;
         SinginPostRequest();
+        _isLoading = false;
       });
     });
   }

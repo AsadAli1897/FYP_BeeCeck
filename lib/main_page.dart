@@ -6,6 +6,7 @@ import 'package:fyp_bees/hive_data.dart';
 import 'package:fyp_bees/profile.dart';
 import 'package:fyp_bees/parking.dart';
 import 'package:fyp_bees/login.dart';
+import 'package:fyp_bees/notification.dart';
 import 'package:http/http.dart' as http;
 
 class MyHomePage extends StatefulWidget {
@@ -221,7 +222,12 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text('Notification'),
               iconColor: Color.fromARGB(255, 165, 109, 6),
               textColor: Colors.black87,
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CardWidget()),
+                );
+              },
             ),
             ListTile(
               leading: Icon(Icons.logout),
@@ -280,7 +286,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       setState(() {
                         hives += int.parse(_num_hives.text);
                         // Generate the list of hive cards
-                        for (int i = 1; i <= hives; i++) {
+                        for (int i = hiveCards.length + 1; i <= hives; i++) {
                           hiveCards.add(get_card(i));
                         }
                       });
